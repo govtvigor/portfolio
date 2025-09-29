@@ -4,7 +4,7 @@ export const dict = {
   ua: {
     nav: { projects: "Проєкти", about: "Про мене", contact: "Контакти" },
     skillsTitle: "Що я вмію",
-    skills: ["Next.js", "TypeScript", "React", "Tailwind", "Sass", "HTML5", "Google Analytics, AdRoll, Umami", "MongoDB", "Firebase", "Vercel", "Linux", "Git", "Ethers.js (Web3)", "Tonconnect/ui-react", "Telegram Bot API", "Cookies, CORS, pagination"],
+    skills: ["Next.js", "TypeScript", "React", "Tailwind", "Sass", "HTML5", "Google Analytics, AdRoll, Umami", "MongoDB", "Firebase", "Vercel", "Linux", "Git", "Ethers.js (Web3)", "Tonconnect/ui-react", "Telegram Bot API", "Cookies, CORS, pagination", "CoinGecko API"],
     hero: {
       title: "Привіт, я Ігор",
       desc:
@@ -40,7 +40,7 @@ export const dict = {
   en: {
     nav: { projects: "Projects", about: "About", contact: "Contact" },
     skillsTitle: "What I can do",
-    skills: ["Next.js", "TypeScript", "React", "Tailwind", "Sass", "HTML5", "Google Analytics, AdRoll, Umami", "MongoDB", "Firebase", "Vercel", "Linux", "Git", "Ethers.js (Web3)", "Tonconnect/ui-react", "Telegram Bot API", "Cookies, CORS, pagination" ],
+    skills: ["Next.js", "TypeScript", "React", "Tailwind", "Sass", "HTML5", "Google Analytics, AdRoll, Umami", "MongoDB", "Firebase", "Vercel", "Linux", "Git", "Ethers.js (Web3)", "Tonconnect/ui-react", "Telegram Bot API", "Cookies, CORS, pagination", "CoinGecko API"],
     hero: {
       title: "Hi, I'm Igor",
       desc:
