@@ -31,7 +31,11 @@ export default function LangSwitcher() {
   function updateUrl(newLang: Lang) {
     const params = new URLSearchParams(searchParams?.toString());
     params.set("lang", newLang);
-    router.replace(`${pathname}?${params.toString()}` as any);
+    // Build a proper URL to satisfy types
+    const base = typeof window !== "undefined" ? window.location.origin : "";
+    const url = new URL(pathname || "/", base);
+    url.search = params.toString();
+    router.replace(url.pathname + (url.search ? `?${url.search}` : ""));
   }
 
   function toggle() {

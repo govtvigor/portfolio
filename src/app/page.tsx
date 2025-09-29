@@ -2,8 +2,17 @@
 import { motion } from "framer-motion";
 import { useSearchParams } from "next/navigation";
 import { dict, getLangFromSearch } from "@/lib/i18n";
+import { Suspense } from "react";
 
 export default function Home() {
+  return (
+    <Suspense fallback={null}>
+      <HomeContent />
+    </Suspense>
+  );
+}
+
+function HomeContent() {
   const search = useSearchParams();
   const lang = getLangFromSearch(search?.toString());
   const t = dict[lang];
