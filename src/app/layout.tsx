@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 // import Link from "next/link";
 import Nav from "@/components/Nav";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +56,9 @@ export default function RootLayout({
           />
         ) : null}
         <header className="sticky top-0 z-50 backdrop-blur-md bg-white/80 border-b border-black/10 site-header">
-          <Nav />
+          <Suspense fallback={null}>
+            <Nav />
+          </Suspense>
         </header>
         <main className="mx-auto max-w-6xl px-4 sm:px-6 py-10">{children}</main>
         <footer className="border-t border-black/10">
