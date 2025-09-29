@@ -1,103 +1,101 @@
-import Image from "next/image";
+"use client";
+import { motion } from "framer-motion";
+import { useSearchParams } from "next/navigation";
+import { dict, getLangFromSearch } from "@/lib/i18n";
 
 export default function Home() {
+  const search = useSearchParams();
+  const lang = getLangFromSearch(search?.toString());
+  const t = dict[lang];
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <div id="home" className="space-y-24">
+      <section className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="space-y-6">
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-4xl sm:text-5xl font-bold tracking-tight">
+            {t.hero.title}
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, delay: 0.1 }} className="text-base leading-7 opacity-80">
+            {t.hero.desc}
+          </motion.p>
+          <div className="flex gap-3">
+            <a href="#projects" className="px-4 py-2 rounded-md bg-foreground text-background text-sm hover:opacity-90">{t.hero.ctaProjects}</a>
+            <a href="#contact" className="px-4 py-2 rounded-md border border-black/10 dark:border-white/20 text-sm hover:bg-black/5 dark:hover:bg-white/5">{t.hero.ctaContact}</a>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+        <motion.div initial={{ opacity: 0, scale: 0.98 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} className="rounded-xl border border-black/10 p-6 bg-white/70 surface">
+          <ul className="grid grid-cols-2 gap-3 text-sm">
+            <li className="px-3 py-2 rounded-md bg-black/5 chip">Next.js</li>
+            <li className="px-3 py-2 rounded-md bg-black/5 chip">TypeScript</li>
+            <li className="px-3 py-2 rounded-md bg-black/5 chip">React</li>
+            <li className="px-3 py-2 rounded-md bg-black/5 chip">Tailwind</li>
+            <li className="px-3 py-2 rounded-md bg-black/5 chip">Sass</li>
+            <li className="px-3 py-2 rounded-md bg-black/5 chip">HTML5</li>
+          </ul>
+        </motion.div>
+      </section>
+
+      <section id="projects" className="space-y-10">
+        <h2 className="text-2xl font-semibold">{t.projectsTitle}</h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          <ProjectCard title={t.projects.tradekeeper.title} description={t.projects.tradekeeper.desc} href="https://tradekeeper.io" tags={t.projects.tradekeeper.tags} />
+          <ProjectCard title={t.projects.shp.title} description={t.projects.shp.desc} href="https://shp.network" tags={t.projects.shp.tags} />
+          <ProjectCard title={t.projects.bot.title} description={t.projects.bot.desc} href="https://t.me/squirrelapp_bot" tags={t.projects.bot.tags} />
+        </div>
+      </section>
+
+      <section id="about" className="space-y-6">
+        <h2 className="text-2xl font-semibold">{t.aboutTitle}</h2>
+        <p className="opacity-80 max-w-2xl">{t.aboutBody}</p>
+      </section>
+
+      <section id="skills" className="space-y-6">
+        <h2 className="text-2xl font-semibold">{t.skillsTitle}</h2>
+        <ul className="flex flex-wrap gap-2">
+          {t.skills.map((s) => (
+            <li key={s} className="text-xs px-2 py-1 rounded-md border border-black/10">{s}</li>
+          ))}
+        </ul>
+      </section>
+
+      <section id="contact" className="space-y-4">
+        <h2 className="text-2xl font-semibold">{t.contactTitle}</h2>
+        <p className="opacity-80">{t.contactBody} <a className="underline" href="https://web.telegram.org/a/#323923289" target="_blank" rel="noreferrer">@Nabuuuuuuu</a></p>
+      </section>
     </div>
+  );
+}
+
+type ProjectCardProps = {
+  title: string;
+  description: string;
+  href: string;
+  tags: readonly string[];
+};
+
+function ProjectCard({ title, description, href, tags }: ProjectCardProps) {
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      className="block rounded-xl border border-black/10 dark:border-white/10 p-5 hover:shadow-md transition-shadow"
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.4 }}
+    >
+      <div className="flex items-center justify-between gap-3">
+        <h3 className="text-lg font-semibold">{title}</h3>
+        <span className="text-xs opacity-60">↗</span>
+      </div>
+      <p className="mt-2 text-sm opacity-80">{description}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {tags.map((t) => (
+          <span key={t} className="text-xs px-2 py-1 rounded-md bg-black/5 dark:bg-white/5">
+            {t}
+          </span>
+        ))}
+      </div>
+    </motion.a>
   );
 }

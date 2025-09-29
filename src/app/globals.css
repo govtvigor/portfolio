@@ -1,26 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
+/* Dark theme overrides without touching light ones */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html, body {
+    background-color: #0a0a0a;
+    color: #ededed;
+  }
+  .site-header {
+    background-color: rgba(10,10,10,0.8);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .surface {
+    background-color: rgba(17,17,17,0.6);
+    border-color: rgba(255,255,255,0.1);
+  }
+  .chip {
+    background-color: rgba(255,255,255,0.05);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Explicit dark class override so toggler works regardless of system preference */
+html.dark, body.dark {
+  background-color: #0a0a0a !important;
+  color: #ededed !important;
+}
+/* Ensure body overrides Tailwind's bg-white/text classes when html has .dark */
+html.dark body {
+  background-color: #0a0a0a !important;
+  color: #ededed !important;
+}
+html.dark .site-header {
+  background-color: rgba(10,10,10,0.8);
+  border-color: rgba(255,255,255,0.1);
+}
+html.dark .surface {
+  background-color: rgba(17,17,17,0.6);
+  border-color: rgba(255,255,255,0.1);
+}
+html.dark .chip {
+  background-color: rgba(255,255,255,0.05);
 }
