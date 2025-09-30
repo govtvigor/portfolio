@@ -17,16 +17,16 @@ export default function BackToTop() {
     window.addEventListener("scroll", evaluateVisibility, { passive: true });
     window.addEventListener("hashchange", evaluateVisibility);
     return () => {
-      window.removeEventListener("scroll", evaluateVisibility as any);
-      window.removeEventListener("hashchange", evaluateVisibility as any);
+      window.removeEventListener("scroll", evaluateVisibility);
+      window.removeEventListener("hashchange", evaluateVisibility);
     };
   }, [evaluateVisibility]);
 
   const handleTop = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const lenis = (window as any).__lenis;
+    const lenis = window.__lenis;
     if (lenis?.scrollTo) {
-      lenis.scrollTo(0, { immediate: false });
+      lenis.scrollTo(0 as unknown as Element, { offset: 0 });
     } else {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
