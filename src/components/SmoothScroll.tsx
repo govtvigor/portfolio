@@ -9,6 +9,24 @@ if (typeof window !== "undefined") {
 	gsap.registerPlugin(ScrollTrigger);
 }
 
+type LenisEasing = (t: number) => number;
+interface LenisOptions {
+  autoRaf?: boolean;
+  duration?: number;
+  easing?: LenisEasing;
+  smoothWheel?: boolean;
+  smoothTouch?: boolean;
+  gestureOrientation?: "vertical" | "horizontal";
+}
+interface LenisInstance {
+  raf: (time: number) => void;
+  on: (event: "scroll", handler: () => void) => void;
+  destroy: () => void;
+}
+declare global {
+  interface Window { __lenis?: LenisInstance }
+}
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -23,10 +41,10 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       smoothWheel: true,
       smoothTouch: true,
       gestureOrientation: "vertical",
-    } as any);
+    } as unknown as LenisOptions) as unknown as LenisInstance;
 
     // expose lenis globally for controlled section snapping
-    (window as any).__lenis = lenis;
+    window.__lenis = lenis;
 
     const update = (time: number) => {
       lenis.raf(time * 1000);
@@ -39,11 +57,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       gsap.ticker.remove(update);
-      (lenis as any)?.destroy?.();
-      try { delete (window as any).__lenis; } catch {}
+      lenis.destroy();
+      try { delete window.__lenis; } catch {}
     };
   }, []);
-  return children as any;
+  return children;
 }
 
 

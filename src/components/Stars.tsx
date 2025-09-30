@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Particles } from "@tsparticles/react";
 import { initParticlesEngine } from "@tsparticles/react";
+import type { IOptions, RecursivePartial } from "@tsparticles/engine";
 
 export default function Stars() {
   const [ready, setReady] = useState(false);
@@ -18,7 +19,7 @@ export default function Stars() {
     return () => { cancelled = true; };
   }, []);
 
-  const options = useMemo(() => ({
+  const options: RecursivePartial<IOptions> = useMemo(() => ({
     background: { color: "transparent" },
     fullScreen: { enable: true, zIndex: 1 },
     fpsLimit: 120,
@@ -53,7 +54,7 @@ export default function Stars() {
   }), []);
 
   if (!ready) return null;
-  return <Particles id="tsparticles-stars" options={options as any} style={{ pointerEvents: "none" }} />;
+  return <Particles id="tsparticles-stars" options={options} style={{ pointerEvents: "none" }} />;
 }
 
 
