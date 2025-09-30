@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Particles } from "@tsparticles/react";
-import type { ISourceOptions } from "@tsparticles/engine";
 import { initParticlesEngine } from "@tsparticles/react";
 
 export default function Stars() {
@@ -19,7 +18,7 @@ export default function Stars() {
     return () => { cancelled = true; };
   }, []);
 
-  const options: ISourceOptions = useMemo(() => ({
+  const options = useMemo(() => ({
     background: { color: "transparent" },
     fullScreen: { enable: true, zIndex: 1 },
     fpsLimit: 120,
@@ -54,7 +53,7 @@ export default function Stars() {
   }), []);
 
   if (!ready) return null;
-  return <Particles id="tsparticles-stars" options={options} style={{ pointerEvents: "none" }} />;
+  return <Particles id="tsparticles-stars" options={options as any} style={{ pointerEvents: "none" }} />;
 }
 
 

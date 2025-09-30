@@ -9,12 +9,6 @@ if (typeof window !== "undefined") {
 	gsap.registerPlugin(ScrollTrigger);
 }
 
-declare global {
-  interface Window {
-    __lenis?: Lenis;
-  }
-}
-
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -23,16 +17,16 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     // Use default window scrolling for best compatibility
     const lenis = new Lenis({
+      autoRaf: false,
       duration: 1,
       easing: (t: number) => 1 - Math.pow(2, -10 * t),
       smoothWheel: true,
-    });
+      smoothTouch: true,
+      gestureOrientation: "vertical",
+    } as any);
 
     // expose lenis globally for controlled section snapping
-    (window as Window).__lenis = lenis;
-
-    // Disable internal RAF loop; we drive it via GSAP ticker
-    try { lenis.stop(); } catch {}
+    (window as any).__lenis = lenis;
 
     const update = (time: number) => {
       lenis.raf(time * 1000);
@@ -45,11 +39,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
 
     return () => {
       gsap.ticker.remove(update);
-      try { lenis.destroy(); } catch {}
-      try { delete (window as Window).__lenis; } catch {}
+      (lenis as any)?.destroy?.();
+      try { delete (window as any).__lenis; } catch {}
     };
   }, []);
-  return <>{children}</>;
+  return children as any;
 }
 
 
