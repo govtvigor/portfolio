@@ -9,7 +9,7 @@ export default function CosmicJourney() {
     <div ref={containerRef}>
       <section id="home" className="cj-section h-screen snap-start flex flex-col items-center justify-center text-center px-6 z-10 relative">
         <img src="/cyan_amongus.png" alt="among us" className="w-[140px] h-auto mb-6" />
-        <h1 className="text-4xl font-semibold mb-3 z-2 relative">Hi, I'm Igor</h1>
+        <h1 className="text-4xl font-semibold mb-3 z-2 relative">Hi, I&apos;m Igor</h1>
         <div className="text-xl opacity-80 w-[90%] z-10 relative text-left font-bold">I’m a frontend developer specializing in building fast, clean, and highly interactive interfaces. I work primarily with Next.js, React, and TypeScript, focusing on delivering applications that are performant, accessible, and intuitive.
 
 I have a keen eye for detail and a strong passion for user-first design, creating experiences that are not only functional but also delightful—with smooth animations and thoughtful micro-interactions that bring digital products to life. Accessibility and clarity in UX are central to my work, ensuring interfaces are inclusive and easy to navigate for everyone.

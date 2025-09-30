@@ -9,7 +9,7 @@ export default function Nav() {
     if (!href || !href.startsWith("#")) return;
     e.preventDefault();
     const target = document.querySelector(href) as HTMLElement | null;
-    const lenis = (window as any).__lenis;
+    const lenis = window.__lenis;
     if (target && lenis?.scrollTo) {
       lenis.scrollTo(target, { offset: -56 });
     } else if (target) {
