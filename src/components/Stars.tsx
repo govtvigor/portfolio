@@ -33,7 +33,7 @@ export default function Stars() {
       move: {
         enable: false,
         direction: "right",
-        speed: 3,
+        speed: 4,
         straight: false,
         outModes: { default: "out", top: "out", right: "out", bottom: "out", left: "out" },
         angle: { value: 10, offset: 0 },
