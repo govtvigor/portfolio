@@ -23,8 +23,8 @@ interface LenisInstance {
   on: (event: "scroll", handler: () => void) => void;
   destroy: () => void;
 }
-declare global {
-  interface Window { __lenis?: LenisInstance }
+interface LenisScroll {
+  scrollTo?: (target: number | Element, options?: { offset?: number }) => void;
 }
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
@@ -43,8 +43,11 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       gestureOrientation: "vertical",
     } as unknown as LenisOptions) as unknown as LenisInstance;
 
-    // expose lenis globally for controlled section snapping
-    window.__lenis = lenis;
+    // expose lenis globally for controlled section snapping (only scrollTo)
+    const lenisWithScroll = lenis as unknown as LenisScroll;
+    window.__lenis = {
+      scrollTo: lenisWithScroll.scrollTo?.bind(lenisWithScroll)
+    };
 
     const update = (time: number) => {
       lenis.raf(time * 1000);
