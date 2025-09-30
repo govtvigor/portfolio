@@ -6,7 +6,20 @@
 }
 
 body {
-  scroll-behavior: smooth;
+  scroll-behavior: auto; /* керує Lenis */
+}
+
+html, body {
+  height: auto;
+  overflow: auto;
+}
+
+body, main {
+  overflow-x: hidden; /* прибираємо горизонтальний скрол */
+}
+
+main {
+  overscroll-behavior: auto;
 }
 
 /* Dark theme overrides without touching light ones */

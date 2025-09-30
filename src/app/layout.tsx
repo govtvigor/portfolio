@@ -4,6 +4,9 @@ import "./globals.css";
 // import Link from "next/link";
 import Nav from "@/components/Nav";
 import { Suspense } from "react";
+import Stars from "@/components/Stars";
+import SmoothScroll from "@/components/SmoothScroll";
+import BackToTop from "@/components/BackToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,7 +20,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Squirrel — Frontend Portfolio",
-  description: "Особисте портфоліо: Next.js, TypeScript, Tailwind, анімації та проєкти",
+  description: "Personal portfolio: Next.js, TypeScript, Tailwind, animations and projects",
 };
 
 export default function RootLayout({
@@ -28,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <Stars />
         {/* Umami / AdRoll placeholders via env flags */}
         {process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID ? (
           <script
@@ -60,11 +64,15 @@ export default function RootLayout({
             <Nav />
           </Suspense>
         </header>
-        <main className="mx-auto max-w-6xl px-4 sm:px-6 py-10">{children}</main>
+        <SmoothScroll>
+          <main className="mx-auto w-full px-4 sm:px-6 py-10">
+            {children}
+          </main>
+        </SmoothScroll>
+        <BackToTop />
         <footer className="border-t border-black/10">
-          <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 text-sm flex items-center justify-between">
+          <div className="mx-auto max-w-6xl px-4 sm:px-6 py-6 text-sm flex items-center justify-center">
             <span>© {new Date().getFullYear()} All rights reserved</span>
-            <a href="#home" className="hover:opacity-80">Вгору ↑</a>
           </div>
         </footer>
       </body>
